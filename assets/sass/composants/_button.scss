@@ -1,0 +1,9 @@
+.btn-orange {
+    color: #fff;
+    background-color: $color-primary;
+    border-color: $color-primary;
+    &:hover {
+      color: #fff;
+      background-color: lighten($color-primary, 10%);
+    }
+}

@@ -18,8 +18,21 @@
       </ul>
     </nav>
   </header>
-  <div class="container mt-4">
+  <div class="d-flex flex-column flex-md-row container mt-4">
+    <img class="col-md-5" src="images/vcam_1.jpg" alt="">
+    <div class="col-md-7">
+      <h3>Caméra</h3>
+      <p>Description</p>
+      <label for="lentilles">Choissisez votre lentilles :</label>
+      <select name="lentilles" id="lentilles">
+          <option value="50mm 1.8">50mm 1.8</option>
+          <option value="60mm 2.8">60mm 2.8</option>
+          <option value="24-60mm 2.8/4.5">24-60mm 2.8/4.5</option>
+      </select>
+    <p class="mt-2">Prix : ??? €</p>
+    <button class="mb-2 btn btn-orange" type="button" name="button">Ajouter au panier</button>
   </div>
+</div>
 </div>
 </body>
 </html>

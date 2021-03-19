@@ -7820,6 +7820,12 @@ a.text-dark:hover, a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: #dee2e6; } }
+.col-lg-3 {
+  padding: 0; }
+
+.text-orange {
+  color: #D6822A; }
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -8148,11 +8154,5 @@ header a:hover {
 header img {
   max-width: 100%;
   height: 80px; }
-
-h1 {
-  background-color: blue; }
-
-.col-lg-3 {
-  padding: 0; }
 
 /*# sourceMappingURL=main.css.map */

@@ -2,11 +2,10 @@
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 @import "utils/variables.scss";
+@import "utils/mybootstrap.scss";
 
 @import "base/normalize.scss";
 
 @import "composants/button.scss";
 
 @import "layout/header.scss";
-
-@import "pages/index.scss";

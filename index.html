@@ -5,6 +5,8 @@
   <script src="https://kit.fontawesome.com/a9e1f459e4.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="shortcut icon" type="img/png" href="assets/img/favicon.png">
+  <script type="text/javascript" src="assets/js/api.js"></script>
+  <script type="text/javascript" src="assets/js/listeProduits.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Orinoco | Accueil</title>
 </head>
@@ -20,54 +22,19 @@
   </header>
   <div class="container mt-4">
     <h4>Nos différents produits</h4>
-    <section class="d-flex flex-wrap my-3 justify-content-center">
-      <div class="card col-md-4 col-lg-3 m-1">
-        <img class="card-img-top" src="images/vcam_1.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Nom</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Description</h6>
-          <p class="card-text">€</p>
-          <a href="produit.html" class="btn btn-orange">Voir la page du produit</a>
+    <section class="carteCameras d-flex flex-wrap my-3 justify-content-center">
+      <template id="carteListeCameras">
+        <div class="card col-md-4 col-lg-3 m-1">
+          <img class="card-img-top" src="" alt="Card e cap">
+          <div class="card-body">
+            <h5 class="titre"></h5>
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
+            <p class="card-text"></p>
+            <a href="produit.html" class="btn btn-orange">Voir la page du produit</a>
+          </div>
         </div>
-      </div>
-      <div class="card col-md-4 col-lg-3 m-1">
-        <img class="card-img-top" src="images/vcam_2.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Nom</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Description</h6>
-          <p class="card-text">€</p>
-          <a href="produit.html" class="btn btn-orange">Voir la page du produit</a>
-        </div>
-      </div>
-      <div class="card col-md-4 col-lg-3 m-1">
-        <img class="card-img-top" src="images/vcam_3.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Nom</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Description</h6>
-          <p class="card-text">€</p>
-          <a href="produit.html" class="btn btn-orange">Voir la page du produit</a>
-        </div>
-      </div>
-      <div class="card col-md-4 col-lg-3 m-1">
-        <img class="card-img-top" src="images/vcam_4.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Nom</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Description</h6>
-          <p class="card-text">€</p>
-          <a href="produit.html" class="btn btn-orange">Voir la page du produit</a>
-        </div>
-      </div>
-      <div class="card col-md-4 col-lg-3 m-1">
-        <img class="card-img-top" src="images/vcam_5.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Nom</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Description</h6>
-          <p class="card-text">€</p>
-          <a href="produit.html" class="btn btn-orange">Voir la page du produit</a>
-        </div>
-      </div>
-    </section>
-  </div>
+      </template>
+    </section>  </div>
 </div>
 </body>
 </html>

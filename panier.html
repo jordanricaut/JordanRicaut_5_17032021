@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="shortcut icon" type="img/png" href="assets/img/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <script type="text/javascript" src="assets/js/api.js"></script>
   <title>Orinoco | Panier</title>
 </head>
 <body>
@@ -26,31 +27,19 @@
         <table class="table table-dark">
           <thead>
             <tr>
-              <th>#</th>
               <th>Caméra</th>
               <th>Lentilles</th>
+              <th>Quantité</th>
               <th>Prix</th>
-              <th></th>
+              <th><i class="fas fa-trash"></i></th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th>1</th>
-              <td>Caméra</td>
-              <td>Lentilles</td>
-              <td>100€</td>
-              <td>X</td>
-            </tr>
-            <tr>
-              <th>2</th>
-              <td>Caméra</td>
-              <td>Lentilles</td>
-              <td>100€</td>
-              <td>X</td>
-            </tr>
-          </tbody>
+          <tbody class="element_panier">
         </table>
+        <div class="ligne_total">
+        </div>
       </div>
+
       <form class="d-flex col-12 col-lg-5 flex-wrap" action="confirmation.html" method="post">
         <div class="col-6 form-group">
           <label for="firstName">Nom</label>
@@ -77,4 +66,6 @@
     </div>
   </div>
 </body>
+<script type="text/javascript" src="assets/js/panier.js"></script>
+
 </html>

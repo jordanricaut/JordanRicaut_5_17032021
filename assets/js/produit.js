@@ -4,6 +4,8 @@ produit()
 async function produit() {
   const cameras = await recupCameras()
   Camera(cameras)
+  recupDonnees()
+  ajoutPanier()
 }
 
 function recupIdCam() {
@@ -18,7 +20,6 @@ function recupIdCam() {
 function Camera(cameras) {
     // On récupere l'objet de l'api qui correspond à l'id de l'url
     var produitSelect = cameras.find(cameras => cameras._id === recupIdCam())
-    console.log(produitSelect)
     //Création du template Produit
     var templateProduit = document.getElementById("Produit")
     // Crée un clone du template "carteListeCameras"
@@ -28,7 +29,7 @@ function Camera(cameras) {
     cloneProduit.querySelector(".img").alt = 'Image Caméra ' + produitSelect.name
     cloneProduit.querySelector(".desc").textContent = produitSelect.description
     cloneProduit.querySelector(".titre").textContent = produitSelect.name
-    cloneProduit.querySelector(".prix").textContent = produitSelect.price / 100 + ' €';
+    cloneProduit.querySelector(".prix").textContent += produitSelect.price / 100 +' €';
     // Liste des choix des différentes lentilles
     var camerasLentilles = produitSelect.lenses
     for (var i = 0; i < camerasLentilles.length; i++) {
@@ -37,4 +38,39 @@ function Camera(cameras) {
     }
     // On sélectionne l'élément card et on y ajoute le template avec les données du clone
     document.querySelector(".carteProduit").appendChild(cloneProduit)
+}
+
+function recupDonnees() {
+    var nomCam = document.querySelector(".titre").textContent
+    var prix = document.querySelector(".prix").textContent
+    var choixLentilles = document.querySelector("#lentilles").value
+    var quantite = document.querySelector("#quantite").value
+    var elementChoix = {
+      nom: nomCam,
+      prix: prix,
+      quantite: quantite,
+      lentilles: choixLentilles
     }
+    return  elementChoix
+
+}
+
+
+function ajoutPanier() {
+  var produitDansLeLocalStorage = JSON.parse(localStorage.getItem("Produit"))
+  document.querySelector(".btn").addEventListener("click", function() {
+    if (confirm("Voulez vous ajouter ce produit au panier ?")) {
+      if (produitDansLeLocalStorage) {
+        produitDansLeLocalStorage.push(recupDonnees())
+        localStorage.setItem('Produit', JSON.stringify(produitDansLeLocalStorage))
+        window.location.href = 'panier.html'
+      } else {
+        produitDansLeLocalStorage = []
+        produitDansLeLocalStorage.push(recupDonnees())
+        localStorage.setItem('Produit', JSON.stringify(produitDansLeLocalStorage))
+        window.location.href = 'panier.html'
+      }
+
+    }
+  })
+}

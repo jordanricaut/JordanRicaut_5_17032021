@@ -40,32 +40,38 @@
         </div>
       </div>
 
-      <form class="d-flex col-12 col-lg-5 flex-wrap" action="confirmation.html" method="post">
+      <form class="d-flex col-12 col-lg-5 flex-wrap" action="#" method="post">
         <div class="col-6 form-group">
           <label for="firstName">Nom</label>
-          <input type="text" class="form-control" id="firstName" placeholder="Nom">
+          <input type="text" class="form-control" id="nom" placeholder="Nom">
+          <small class="validnom"></small>
         </div>
         <div class="col-6 form-group">
           <label for="lastName">Prénom</label>
-          <input type="text" class="form-control" id="lastName" placeholder="Prénom">
+          <input type="text" class="form-control" id="prenom" placeholder="Prénom">
+          <small class="validprenom"></small>
         </div>
         <div class="col-12 form-group">
           <label for="email">Adresse Mail</label>
           <input type="email" class="form-control" id="email" placeholder="Email">
+          <small class="validemail"></small>
         </div>
         <div class="col-12 form-group">
           <label for="address">Adresse</label>
-          <input type="text" class="form-control" id="address" placeholder="Adresse">
+          <input type="text" class="form-control" id="adresse" placeholder="Adresse">
+          <small class="validadresse"></small>
         </div>
         <div class="col-12 form-group">
           <label for="city">Ville</label>
-          <input type="text" class="form-control" id="city" placeholder="Ville">
+          <input type="text" class="form-control" id="ville" placeholder="Ville">
+          <small class="validville"></small>
         </div>
-        <button type="submit" class="btn btn-orange">Commander</button>
+        <button type="submit" class="btn btn-orange bouton-commande">Commander</button>
       </form>
     </div>
   </div>
 </body>
 <script type="text/javascript" src="assets/js/panier.js"></script>
+<script type="text/javascript" src="assets/js/validation_formulaire.js"></script>
 
 </html>

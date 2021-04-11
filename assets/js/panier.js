@@ -42,15 +42,17 @@ function affichageElementStorage() {
       '<td class="lentilleschoisis">'+produitDansLeLocalStorage[i].lentilles+'</td>'+
       '<td class="quantitechoisis">'+produitDansLeLocalStorage[i].quantite+'</td>'+
       '<td class="prixchoisis">'+prixTotalProduit+' €</td>'+
-      '<td class="nettoyage"><button type="button" class="btn p-0 text-danger" name="button"><i class="fas fa-times"></i></button></td>'+
+      '<td><button type="button" class="btn p-0 text-danger" name="button"><i class="fas fa-times"></i></button></td>'+
     '</tr>'
    }
 }
 
 function supprimerArticle() {
-  document.querySelector(".nettoyage").addEventListener("click", function() {
+  document.querySelector(".btn").addEventListener("click", function() {
     if (confirm("Vous êtes sure de vouloir supprimer l'articles ?")) {
-
+      var produitDansLeLocalStorage = JSON.parse(localStorage.getItem("Produit"))
+      //console.log(produitDansLeLocalStorage)
+      produitDansLeLocalStorage.slice(1)
     }
   })
 }

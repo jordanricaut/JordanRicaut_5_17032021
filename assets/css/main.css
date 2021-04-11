@@ -8141,6 +8141,9 @@ template {
     color: #fff;
     background-color: #de9b55; }
 
+.btn-error {
+  border-color: #dc3545; }
+
 header {
   background-color: #F5F5F5; }
 

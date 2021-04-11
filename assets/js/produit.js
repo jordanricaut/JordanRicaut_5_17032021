@@ -41,10 +41,12 @@ function Camera(cameras) {
 }
 
 function recupDonnees() {
+    // On récupère les éléments que l'on a besoin 
     var nomCam = document.querySelector(".titre").textContent
     var prix = document.querySelector(".prix").textContent
     var choixLentilles = document.querySelector("#lentilles").value
     var quantite = document.querySelector("#quantite").value
+    // On les met dans un objet
     var elementChoix = {
       nom: nomCam,
       prix: prix,

@@ -7,7 +7,6 @@ async function listeProduits() {
     affichageCamera(camera)
     console.log(camera)
   }
-  //affichageCamera(cameras)
 }
 
 function affichageCamera(cameras) {

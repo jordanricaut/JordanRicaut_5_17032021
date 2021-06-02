@@ -64,11 +64,11 @@ function envoieDonnees() {
   var city = document.querySelector("#ville").value
   var email = document.querySelector("#email").value
   var formulaireContact = {
-    firstName: firstName,
-    lastName: lastName,
-    address: address,
-    city: city,
-    email: email
+    'firstName': firstName,
+    'lastName': lastName,
+    'address': address,
+    'city': city,
+    'email': email
   }
 
    // R E C U P E R A T I O N  D E S  I D
@@ -84,31 +84,55 @@ function envoieDonnees() {
    // T O U T E S  L E S  D O N N E E S  D A N S  U N  O B J E T
    var products = listeIdPanier
    var contact = formulaireContact
-   var donnees = {contact, products}
-   console.log(donnees)
+   //var data = JSON.stringify({contact, products})
 
+
+
+
+
+
+   var data = '{"contact":{"firstName":"sdfsd","lastName":"sqsd","address":"15 adadad","city":"dadada","email":"winkdad@il.com"},"products":["5be1ef211c9d44000030b062"]}';
+   var url = 'http://localhost:3000/api/cameras/order';
+   console.log(data)
    // F E T C H  P O S T - E N V O I E  V E R S  A P I
-  fetch("http://localhost:3000/api/cameras/order", {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'content-type': "application/json"
-    },
-    mode: "cors",
-    body: JSON.stringify(donnees)
-    })
+
+   post = async (url, data) => {
+    try {
+        let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: data
+        });
+        if (response.ok){
+            let responseData = response.json();
+            return responseData
+        } else {
+            console.error('Problème du serveur : ' + response.status);
+        }
+    }
+    catch (e){
+        console.error(e);
+    }
+}
+
+post('http://localhost:3000/api/cameras/order', data).then((value) => {
+  console.log("The order response: ");
+  console.log(JSON.stringify(value));
+  localStorage.setItem('Commande', JSON.stringify(value))
+});
 
     document.querySelector(".bouton-commande").addEventListener("click", function() {
-      if (!verifFormulaire()) {
+  /*    if (!verifFormulaire()) {
         event.preventDefault()
-        console.log(donnees)
         verifFormulaire()
       } else {
-        console.log(donnees)
-        confirm(JSON.stringify(contact))
-         //localStorage.deleteItem('Produit')
-         localStorage.setItem('Commande', JSON.stringify(donnees))
-        //ENVOIE DES DONNEES DANS L'API
-          }
+        post('http://localhost:3000/api/cameras/order', data).then((value) => {
+          console.log("The order response: ");
+          console.log(JSON.stringify(value));
+          localStorage.setItem('Commande', JSON.stringify(value))
+         });
+       }*/
        })
      }

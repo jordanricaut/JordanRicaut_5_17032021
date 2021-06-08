@@ -84,4 +84,6 @@ function prixTotal() {
 
   document.querySelector(".ligne_total").innerHTML =
   'Prix Total : '+prixTotalFin.reduce(reducer).toLocaleString()+' €'
+
+var prixLocalStorage = localStorage.setItem("Prix", prixTotalFin.reduce(reducer))
 }

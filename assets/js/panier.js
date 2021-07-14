@@ -1,30 +1,10 @@
 panier()
 
 async function panier() {
-  recupElementStorage()
   affichageElementStorage()
+  viderPanier()
   supprimerArticle()
   prixTotal()
-}
-
-function recupElementStorage() {
-  var produitDansLeLocalStorage = JSON.parse(localStorage.getItem("Produit"))
-  //console.log(produitDansLeLocalStorage)
-  var nom = produitDansLeLocalStorage.nom
-  var prix = produitDansLeLocalStorage.prix
-  var quantite = produitDansLeLocalStorage.quantite
-  var lentilles = produitDansLeLocalStorage.lentilles
-  var elementChoix = {
-    nom: nom,
-    prix: prix,
-    quantite: quantite,
-    lentilles: lentilles
-  }
-  for (var i = 0; i < produitDansLeLocalStorage.length; i++) {
-    produitDansLeLocalStorage[i]
-  }
-  return  elementChoix
-
 }
 
 function affichageElementStorage() {
@@ -42,20 +22,37 @@ function affichageElementStorage() {
       '<td class="lentilleschoisis">'+produitDansLeLocalStorage[i].lentilles+'</td>'+
       '<td class="quantitechoisis">'+produitDansLeLocalStorage[i].quantite+'</td>'+
       '<td class="prixchoisis">'+prixTotalProduit+' €</td>'+
-      '<td><button type="button" class="btn p-0 text-danger" name="button"><i class="fas fa-times"></i></button></td>'+
+      '<td><button type="button" class="btn p-0 text-danger bouton-supprimer-article" name="button" data-id='+i+'><i class="fas fa-times"></i></button></td>'+
     '</tr>'
    }
 }
 
+
 function supprimerArticle() {
-  document.querySelector(".btn").addEventListener("click", function() {
-    if (confirm("Vous êtes sure de vouloir supprimer l'articles ?")) {
-      var produitDansLeLocalStorage = JSON.parse(localStorage.getItem("Produit"))
-      //console.log(produitDansLeLocalStorage)
-      produitDansLeLocalStorage.slice(1)
+  let bouton_supprimer_article = document.querySelectorAll(".bouton-supprimer-article")
+  for (var i = 0; i < bouton_supprimer_article.length; i++) {
+    let produitDansLeLocalStorage = JSON.parse(localStorage.getItem("Produit"))
+    let id_selectioner_supprimer = produitDansLeLocalStorage[i].id
+    var id = document.querySelector(".btn").dataset.id
+    console.log(id_selectioner_supprimer)
+      bouton_supprimer_article[i].addEventListener("click", function() {
+        produitDansLeLocalStorage.splice(id, 1)
+        localStorage.setItem('Produit', JSON.stringify(produitDansLeLocalStorage))
+        window.location.reload(true)
+      })
+  }
+}
+
+function viderPanier() {
+  document.querySelector(".bouton-supprimer").addEventListener("click", function() {
+    if (confirm("Vous êtes sure de vouloir supprimer les articles ?")) {
+      localStorage.removeItem("Produit")
+      localStorage.removeItem("Prix")
+      window.location.reload(true)
     }
   })
 }
+
 
 function prixTotal() {
   // Création de la variable pour récupérer les données du local storage
@@ -73,7 +70,7 @@ function prixTotal() {
     // On calcule le prix de la caméra par le nombre de quantité choisie
     var prixTotalProduit = (prixSansMonnaie * quantite)
     /* On transforme le résultat de la multiplication en une chaîne de caractères
-    qui tient compte de la localite, ici pour avoir une meilleure lecture des millièmes.*/
+    qui tient compte de la localite, ici pour avoir une meilleure lecture des milliers.*/
     var prixTotalString = prixTotalProduit.toLocaleString()
     // On transforme le résultat en nombre
     var prixFloat = parseFloat(prixTotalProduit)

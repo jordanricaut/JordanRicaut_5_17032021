@@ -1,9 +1,3 @@
-validationFormulaire()
-
-async function validationFormulaire() {
-  await recupElementStorage()
-  await envoieDonnees()
-}
 function verifFormulaire() {
   var firstName = document.querySelector("#nom").value
   var lastName = document.querySelector("#prenom").value
@@ -87,8 +81,6 @@ function envoieDonnees() {
    var data = JSON.stringify({contact, products})
    console.log(data)
 
-   //var data = '{"contact":{"firstName":"sdfsd","lastName":"sqsd","address":"15 adadad","city":"dadada","email":"winkdad@il.com"},"products":["5be1ef211c9d44000030b062"]}';
-   var url = 'http://localhost:3000/api/cameras/order';
    // F E T C H  P O S T - E N V O I E  V E R S  A P I
 
     post = async (url, data) => {
@@ -102,7 +94,6 @@ function envoieDonnees() {
         });
         if (response.ok){
             let responseData = response.json();
-            console.log(responseData)
             return responseData
         } else {
             console.error('Problème du serveur : ' + response.status);
@@ -119,14 +110,13 @@ function envoieDonnees() {
       console.log(value.orderId)
       localStorage.setItem('Commande', JSON.stringify(value))
     })
-}
+  }
 
 document.querySelector(".bouton-commande").addEventListener("click", function() {
-    /*if (!verifFormulaire()) {
+  if (!verifFormulaire()) {
     event.preventDefault()
     verifFormulaire()
   } else {
-  }*/
-  envoieDonnees()
-
- })
+    envoieDonnees()
+  }
+})

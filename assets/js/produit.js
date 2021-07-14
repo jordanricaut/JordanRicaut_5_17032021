@@ -3,7 +3,7 @@ produit()
 //Création de la fonction produit
 async function produit() {
   const cameras = await recupCameras()
-  Camera(cameras)
+  camera(cameras)
   recupDonnees()
   ajoutPanier()
 }
@@ -17,7 +17,7 @@ function recupIdCam() {
   return idCam
 }
 
-function Camera(cameras) {
+function camera(cameras) {
     // On récupere l'objet de l'api qui correspond à l'id de l'url
     var produitSelect = cameras.find(cameras => cameras._id === recupIdCam())
     //Création du template Produit
@@ -56,7 +56,6 @@ function recupDonnees() {
       id: id
     }
     return  elementChoix
-
 }
 
 

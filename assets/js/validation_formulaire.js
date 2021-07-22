@@ -1,3 +1,140 @@
+  // Expressions REGEX
+  class Regex {
+
+      // Vérification de l'email
+      static emailIsValid(value) {
+          const re = /^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,30})/i;
+          return re.test(value.toLowerCase());
+      }
+
+      // Vérification d'un texte
+      static textIsValid(value) {
+          const re = /^[A-Za-z][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
+          return re.test(value);
+      }
+
+      // Vérification d'une adresse
+      static addressIsValid(value) {
+          const re = /^([0-9]{1,})[^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{3,}$/;
+          return re.test(value);
+      }
+  }
+
+  // Fonction qui vérifie chaque champ et affiche les messages d'erreur s'il y en a
+  function controleFormulaire(lastName, firstName, address, city, email){
+      let formChecked = true;
+      var firstName = document.querySelector("#nom").value
+      var lastName = document.querySelector("#prenom").value
+      var address = document.querySelector("#adresse").value
+      var city = document.querySelector("#ville").value
+      var email = document.querySelector("#email").value
+
+      if(!Regex.textIsValid(lastName)){
+        document.querySelector('.validnom').innerHTML = 'Merci de remplir correctement cette case'
+        document.querySelector('#nom').classList.add("btn-error")
+        formChecked = false;
+      } else{
+        document.querySelector('.validnom').innerHTML = ''
+        document.querySelector('#nom').classList.remove("btn-error")
+      }
+      if (!Regex.textIsValid(firstName)){
+        document.querySelector('.validprenom').innerHTML = 'Merci de remplir correctement cette case'
+        document.querySelector('#prenom').classList.add("btn-error")
+        formChecked = false;
+      } else{
+        document.querySelector('.validprenom').innerHTML = ''
+        document.querySelector('#prenom').classList.remove("btn-error")
+      }
+      if(!Regex.textIsValid(address)){
+        document.querySelector('.validadresse').innerHTML = 'Merci de remplir correctement cette case'
+        document.querySelector('#adresse').classList.add("btn-error")
+        formChecked = false;
+      } else{
+        document.querySelector('.validadresse').innerHTML = ''
+        document.querySelector('#adresse').classList.remove("btn-error")
+      }
+      if(!Regex.textIsValid(city)){
+        document.querySelector('.validville').innerHTML = 'Merci de remplir correctement cette case'
+        document.querySelector('#ville').classList.add("btn-error")
+        formChecked = false;
+      } else{
+        document.querySelector('.validville').innerHTML = ''
+        document.querySelector('#ville').classList.remove("btn-error")
+      }
+      if(!Regex.emailIsValid(email)){
+        document.querySelector('.validemail').innerHTML = 'Merci de remplir correctement cette case'
+        document.querySelector('#email').classList.add("btn-error")
+        formChecked = false;
+      } else{
+        document.querySelector('.validemail').innerHTML = ''
+        document.querySelector('#email').classList.remove("btn-error")
+      }
+      return formChecked
+  }
+
+  function envoieDonnees() {
+    var firstName = document.querySelector("#nom").value
+    var lastName = document.querySelector("#prenom").value
+    var address = document.querySelector("#adresse").value
+    var city = document.querySelector("#ville").value
+    var email = document.querySelector("#email").value
+    var formulaireContact = {
+      'firstName': firstName,
+      'lastName': lastName,
+      'address': address,
+      'city': city,
+      'email': email
+    }
+
+     // R E C U P E R A T I O N  D E S  I D
+     var cameraPanier = localStorage.getItem("Produit")
+     var cam = JSON.parse(cameraPanier)
+     //console.log(cam)
+     var listeIdPanier = []
+     for (let i = 0; i < cam.length; i++) {
+       var listeCamPanier = cam[i]
+       listeIdPanier.push(listeCamPanier.id)
+     }
+
+     // T O U T E S  L E S  D O N N E E S  D A N S  U N  O B J E T
+     var products = listeIdPanier
+     var contact = formulaireContact
+     var data = JSON.stringify({contact, products})
+     console.log(data)
+
+     fetch('http://localhost:3000/api/cameras/order', {
+       method: 'POST',
+       body: data,
+       headers: {
+         'Content-Type': 'application/json'
+       }
+     })
+     .then(response => response.json())
+     .then(data => {
+       console.log(data)
+       localStorage.setItem('Commande', JSON.stringify(data))
+       console.log(data.orderId)
+     })
+     .catch(e => {
+       console.error(e)
+     })
+}
+
+document.querySelector(".bouton-commande").addEventListener("click", () => {
+  if (!controleFormulaire()) {
+    event.preventDefault()
+  } else {
+    envoieDonnees()
+  }
+})
+
+
+
+
+
+
+
+/* V1
 function verifFormulaire() {
   var firstName = document.querySelector("#nom").value
   var lastName = document.querySelector("#prenom").value
@@ -92,10 +229,10 @@ function envoieDonnees() {
         },
         body: data
         });
-        if (response.ok){
+        if (response.ok) {
             let responseData = response.json();
             return responseData
-        } else {
+          } else {
             console.error('Problème du serveur : ' + response.status);
         }
     }
@@ -112,11 +249,10 @@ function envoieDonnees() {
     })
   }
 
-document.querySelector(".bouton-commande").addEventListener("click", function() {
+document.querySelector(".bouton-commande").addEventListener("click", (event) => {
   if (!verifFormulaire()) {
     event.preventDefault()
-    verifFormulaire()
   } else {
     envoieDonnees()
   }
-})
+})*/

@@ -63,11 +63,15 @@ function ajoutPanier() {
   var produitDansLeLocalStorage = JSON.parse(localStorage.getItem("Produit"))
   document.querySelector(".btn").addEventListener("click", function() {
     if (confirm("Voulez vous ajouter ce produit au panier ?")) {
+      /* Si la variable produitDansLeLocalStorage alors il envoie les nouvelles données dans le tableau
+       puis l'envoie dans le local storage et est redirigé vers la page panier */
       if (produitDansLeLocalStorage) {
         produitDansLeLocalStorage.push(recupDonnees())
         localStorage.setItem('Produit', JSON.stringify(produitDansLeLocalStorage))
         window.location.href = 'panier.html'
       } else {
+        /* Sinon la variable produitDansLeLocalStorage est crée avec un tableau vide, les données lui sont envoyé
+        puis l'envoie dans le locale storage et est redirigé vers la page panier */
         produitDansLeLocalStorage = []
         produitDansLeLocalStorage.push(recupDonnees())
         localStorage.setItem('Produit', JSON.stringify(produitDansLeLocalStorage))

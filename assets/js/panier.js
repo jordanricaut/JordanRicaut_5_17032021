@@ -1,21 +1,27 @@
 panier()
 
 async function panier() {
-  affichageElementStorage()
-  viderPanier()
-  supprimerArticle()
-  prixTotal()
+  var produitDansLeLocalStorage = JSON.parse(localStorage.getItem("Produit"))
+  if (localStorage.getItem("Produit") === null || produitDansLeLocalStorage.length === 0) {
+    localStorage.clear()
+    var panier = document.querySelector(".panier").innerHTML = "<h3>Votre panier est vide</h3>"
+  } else {
+    affichageElementStorage()
+    viderPanier()
+    supprimerArticle()
+    prixTotal()
+  }
 }
 
+
+// Permet l'affichage du panier sous forme de tableau HTML
 function affichageElementStorage() {
   var produitDansLeLocalStorage = JSON.parse(localStorage.getItem("Produit"))
   for (var i = 0; i < produitDansLeLocalStorage.length; i++) {
     var quantite = produitDansLeLocalStorage[i].quantite
-
     var prixMonnaie = produitDansLeLocalStorage[i].prix
     var prixSansMonnaie = prixMonnaie.replace(/\D/g,'');
     var prixTotalProduit = (prixSansMonnaie * quantite).toLocaleString()
-
     var panier = document.querySelector(".element_panier").innerHTML +=
     '<tr>'+
       '<td class="camerachoisis">'+produitDansLeLocalStorage[i].nom+'</td>'+
@@ -24,10 +30,10 @@ function affichageElementStorage() {
       '<td class="prixchoisis">'+prixTotalProduit+' €</td>'+
       '<td><button type="button" class="btn p-0 text-danger bouton-supprimer-article" name="button" data-id='+i+'><i class="fas fa-times"></i></button></td>'+
     '</tr>'
-   }
+  }
 }
 
-
+// Permet de supprimer un article en fonction de la valeur de l'attribut data-id
 function supprimerArticle() {
   let bouton_supprimer_article = document.querySelectorAll(".bouton-supprimer-article")
   for (var i = 0; i < bouton_supprimer_article.length; i++) {
@@ -43,6 +49,7 @@ function supprimerArticle() {
   }
 }
 
+// Permet de supprimer la totalité du panier en supprimant les clé "Produit" et "Prix"
 function viderPanier() {
   document.querySelector(".bouton-supprimer").addEventListener("click", function() {
     if (confirm("Vous êtes sure de vouloir supprimer les articles ?")) {
@@ -79,8 +86,10 @@ function prixTotal() {
 }
   var reducer = (acc, cur) => acc + cur;
 
+  // Affiche le prix total
   document.querySelector(".ligne_total").innerHTML =
   'Prix Total : '+prixTotalFin.reduce(reducer).toLocaleString()+' €'
 
-var prixLocalStorage = localStorage.setItem("Prix", prixTotalFin.reduce(reducer))
+// Envoie le prix total dans le local storage
+  var prixLocalStorage = localStorage.setItem("Prix", prixTotalFin.reduce(reducer))
 }

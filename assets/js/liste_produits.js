@@ -1,11 +1,11 @@
 listeProduits()
 
+// Permet l'affichage des caméras de l'API
 async function listeProduits() {
   const cameras =  await recupCameras()
   for (var i = 0; i < cameras.length; i++) {
     var camera = cameras[i]
     affichageCamera(camera)
-    console.log(camera)
   }
 }
 

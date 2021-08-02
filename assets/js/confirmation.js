@@ -1,9 +1,11 @@
+// Récupère les données de la clé "Commande" situé dans le local storage
 var commande = JSON.parse(localStorage.getItem("Commande"))
-
+// Récupère les données de la clé "Prix" et la renvoie en une chaine de caractère
 var prix = JSON.parse(localStorage.getItem("Prix"))
 var prixString = prix.toLocaleString()
 console.log(prixString)
 
+//Affichage de la page confirmation.html
 document.querySelector(".container").innerHTML =
   '<div class="col-12 col-lg-6">'+
       '<h3> Merci pour votre commande !</h3>'+

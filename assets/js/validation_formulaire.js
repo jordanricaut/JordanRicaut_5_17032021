@@ -102,24 +102,24 @@
      var data = JSON.stringify({contact, products})
      console.log(data)
 
-     // Mise en place de l'envoie vers l'API
-     fetch('http://localhost:3000/api/cameras/order', {
-       method: 'POST',
-       body: data,
-       headers: {
-         'Content-Type': 'application/json'
-       }
-     })
-     .then(response => response.json())
-     .then(data => {
-       console.log(data)
-       localStorage.setItem('Commande', JSON.stringify(data))
-       console.log(data.orderId)
-     })
-     .catch(e => {
-       console.error(e)
-     })
-}
+    // Mise en place de l'envoie vers l'API
+    fetch('http://localhost:3000/api/cameras/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: data,
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      localStorage.setItem('Commande', JSON.stringify(data))
+      console.log(data.orderId)
+    })
+    .catch(e => {
+      console.error(e)
+    })
+  }
 
 var produitDansLeLocalStorage = JSON.parse(localStorage.getItem("Produit"))
 if (localStorage.getItem("Produit") === null || produitDansLeLocalStorage.length === 0) {
@@ -129,7 +129,9 @@ if (localStorage.getItem("Produit") === null || produitDansLeLocalStorage.length
       event.preventDefault()
     } else {
       confirm('Etes vous sur de vouloir finaliser votre commande ?');
+      setTimeout(function() { window.location.assign("confirmation.html") }, 100)
       envoieDonnees()
+      event.preventDefault()
     }
   })
 }
